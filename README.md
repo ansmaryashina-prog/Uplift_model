@@ -5,8 +5,8 @@ Code for a master's thesis. Implements a Two-Tower MLP uplift model that estimat
 ## Repository structure
 
 ```
-├── финал_diploma.ipynb          # main notebook with the full pipeline
-├── two_tower_final_seed99.pth   # pre-trained model weights (seed=99)
+├── final_thesis_code.ipynb          # main notebook with the full pipeline
+├── two_tower_final.pth   # pre-trained model weights 
 ├── requirements.txt             # Python dependencies
 └── README.md
 ```
