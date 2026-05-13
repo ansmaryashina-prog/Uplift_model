@@ -1,58 +1,58 @@
 # Two-Tower Uplift Model — Scooter User Retention
 
-Код к выпускной квалификационной работе. Реализует Two-Tower MLP модель для задачи uplift-моделирования: предсказание индивидуального эффекта воздействия (подарка) на вероятность повторного использования сервиса аренды самокатов.
+Code for a bachelor's thesis. Implements a Two-Tower MLP uplift model that estimates the individual treatment effect of a gift (incentive) on the probability of a user returning to a scooter-sharing service.
 
-## Структура репозитория
+## Repository structure
 
 ```
-├── финал_diploma.ipynb          # основной ноутбук с полным пайплайном
-├── two_tower_final_seed99.pth   # предобученные веса модели (seed=99)
-├── requirements.txt             # зависимости Python
+├── финал_diploma.ipynb          # main notebook with the full pipeline
+├── two_tower_final_seed99.pth   # pre-trained model weights (seed=99)
+├── requirements.txt             # Python dependencies
 └── README.md
 ```
 
-## Исходные данные
+## Data
 
-Файлы данных хранятся на Яндекс Диске (размер не позволяет разместить их в репозитории):
+The data files are hosted on Yandex Disk (too large to include in the repository):
 
-**[Скачать данные с Яндекс Диска](https://disk.yandex.ru/d/CCKixKyzMchHSA)**
+**[Download data from Yandex Disk](https://disk.yandex.ru/d/CCKixKyzMchHSA)**
 
-После скачивания положите оба файла в ту же папку, что и ноутбук:
+Place both files in the same directory as the notebook before running:
 
-| Файл | Описание |
-|------|----------|
-| `df_combined_noisy.csv` | Данные AB-эксперимента с добавленным шумом |
-| `user_features.csv` | Поведенческие признаки пользователей до начала эксперимента |
+| File | Description |
+|------|-------------|
+| `df_combined_noisy.csv` | AB-experiment data with injected noise |
+| `user_features.csv` | Pre-experiment behavioural features per user |
 
-## Что делает ноутбук
+## Notebook outline
 
-1. **Data Loading** — загрузка двух источников, очистка, создание целевой переменной (факт поездки в течение 30 дней после воздействия), объединение в единый датафрейм
-2. **Feature Preparation** — кодирование категориальных признаков, масштабирование, формирование контрфактических векторов воздействия
-3. **Train / Val / Test Split** — стратифицированное разбиение по сегменту и флагу воздействия
-4. **Two-Tower Architecture** — две независимые MLP-башни (user tower + treatment tower), объединяются перед head-слоем
-5. **Metric Functions** — Qini AUC, Uplift AUC, кривые Qini
-6. **Visualisation Functions** — функции построения графиков
-7. **Model Training** — обучение с IPTW-взвешенной BCE-функцией потерь и early stopping; если файл весов уже есть — загружает без переобучения
-8. **Baseline** — T-Learner на логистической регрессии
-9. **Evaluation Metrics** — сравнение моделей на тестовой выборке
-10. **Qini Curves** — общий график и разбивка по сегментам (active_users / return_users)
-11. **ATE** — средний эффект воздействия по типам подарков и сегментам
-12. **SHAP** — объяснение предсказаний через GradientExplainer, PDP-графики по ключевым признакам
+1. **Data Loading** — load both sources, clean, create the target variable (at least one ride within 30 days after treatment), merge into a single dataframe
+2. **Feature Preparation** — encode categorical features, scale numerics, build counterfactual treatment vectors
+3. **Train / Val / Test Split** — stratified split by segment and treatment flag
+4. **Two-Tower Architecture** — two independent MLP towers (user tower + treatment tower) concatenated before a shared head
+5. **Metric Functions** — Qini AUC, Uplift AUC, Qini curve
+6. **Visualisation Functions** — plotting utilities
+7. **Model Training** — training with IPTW-weighted BCE loss and early stopping; loads pre-trained weights if the `.pth` file is present
+8. **Baseline** — T-Learner with logistic regression
+9. **Evaluation Metrics** — model comparison on the test set
+10. **Qini Curves** — overall plot and per-segment breakdown (active_users / return_users)
+11. **ATE** — average treatment effect by gift type and segment
+12. **SHAP** — model explanations via GradientExplainer, PDP plots for key features
 
-## Воспроизведение результатов
+## Reproducing results
 
-Модель обучена с фиксированным `SEED = 99`. При наличии файла `two_tower_final_seed99.pth` ноутбук загружает готовые веса и пропускает обучение — результаты будут идентичны.
+The model was trained with a fixed `SEED = 99`. If `two_tower_final_seed99.pth` is present, the notebook loads the saved weights and skips training — results will be identical.
 
-### Установка зависимостей
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Запуск
+### Run
 
 ```bash
 jupyter notebook финал_diploma.ipynb
 ```
 
-Убедитесь, что `df_combined_noisy.csv`, `user_features.csv` и `two_tower_final_seed99.pth` лежат рядом с ноутбуком.
+Make sure `df_combined_noisy.csv`, `user_features.csv`, and `two_tower_final_seed99.pth` are in the same directory as the notebook.
