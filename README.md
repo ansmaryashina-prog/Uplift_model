@@ -1,6 +1,6 @@
 # Two-Tower Uplift Model — Scooter User Retention
 
-Code for a bachelor's thesis. Implements a Two-Tower MLP uplift model that estimates the individual treatment effect of a gift (incentive) on the probability of a user returning to a scooter-sharing service.
+Code for a master's thesis. Implements a Two-Tower MLP uplift model that estimates the individual treatment effect of a gift (incentive) on the probability of a user returning to a scooter-sharing service.
 
 ## Repository structure
 
