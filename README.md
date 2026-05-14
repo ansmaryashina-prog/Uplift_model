@@ -38,21 +38,3 @@ Place both files in the same directory as the notebook before running:
 10. **Qini Curves** — overall plot and per-segment breakdown (active_users / return_users)
 11. **ATE** — average treatment effect by gift type and segment
 12. **SHAP** — model explanations via GradientExplainer, PDP plots for key features
-
-## Reproducing results
-
-The model was trained with a fixed `SEED = 99`. If `two_tower_final_seed99.pth` is present, the notebook loads the saved weights and skips training — results will be identical.
-
-### Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### Run
-
-```bash
-jupyter notebook финал_diploma.ipynb
-```
-
-Make sure `df_combined_noisy.csv`, `user_features.csv`, and `two_tower_final_seed99.pth` are in the same directory as the notebook.
