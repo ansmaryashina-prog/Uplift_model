@@ -7,26 +7,26 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f5f4f0;
-    --surface: #ffffff;
-    --border: rgba(0,0,0,0.10);
-    --border-strong: rgba(0,0,0,0.18);
-    --text: #1a1a18;
-    --text-2: #5a5a56;
-    --text-3: #9a9a94;
-    --purple: #534AB7;
+    --bg:           #f5f4f0;
+    --surface:      #ffffff;
+    --border:       rgba(0,0,0,0.10);
+    --border-strong:rgba(0,0,0,0.18);
+    --text:         #1a1a18;
+    --text-2:       #5a5a56;
+    --text-3:       #9a9a94;
+    --purple:       #534AB7;
     --purple-light: #EEEDFE;
-    --purple-text: #3C3489;
-    --green: #1D9E75;
-    --green-light: #E1F5EE;
-    --green-text: #085041;
-    --orange: #D85A30;
+    --purple-text:  #3C3489;
+    --green:        #1D9E75;
+    --green-light:  #E1F5EE;
+    --green-text:   #085041;
+    --orange:       #D85A30;
     --orange-light: #FAECE7;
-    --orange-text: #712B13;
-    --pos: #1a7a4a;
-    --neg: #b93232;
-    --radius: 10px;
-    --radius-sm: 6px;
+    --orange-text:  #712B13;
+    --pos:          #1a7a4a;
+    --neg:          #b93232;
+    --radius:       10px;
+    --radius-sm:    6px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -53,21 +53,9 @@
     z-index: 10;
   }
 
-  .logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: .04em;
-    color: var(--text);
-  }
-
+  .logo { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: .04em; }
   .logo span { color: var(--purple); }
-
-  .header-meta {
-    font-size: 12px;
-    color: var(--text-3);
-    font-family: 'DM Mono', monospace;
-  }
+  .header-meta { font-size: 12px; color: var(--text-3); font-family: 'DM Mono', monospace; }
 
   .container {
     max-width: 960px;
@@ -78,23 +66,8 @@
     gap: 1.25rem;
   }
 
-  .page-title {
-    margin-bottom: .25rem;
-  }
-
-  .page-title h1 {
-    font-size: 22px;
-    font-weight: 500;
-    letter-spacing: -.01em;
-  }
-
-  .page-title p {
-    font-size: 13px;
-    color: var(--text-2);
-    margin-top: .3rem;
-    max-width: 560px;
-    line-height: 1.6;
-  }
+  .page-title h1 { font-size: 22px; font-weight: 500; letter-spacing: -.01em; }
+  .page-title p  { font-size: 13px; color: var(--text-2); margin-top: .3rem; max-width: 560px; line-height: 1.6; }
 
   .card {
     background: var(--surface);
@@ -113,203 +86,117 @@
     margin-bottom: 1rem;
   }
 
-  .input-block { display: flex; flex-direction: column; gap: .1rem; }
-
-  .input-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: .6rem 0;
+  /* ── Model comparison table ── */
+  .model-table { width: 100%; border-collapse: collapse; }
+  .model-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-3);
+    text-align: right;
+    padding: .4rem .75rem;
     border-bottom: 1px solid var(--border);
   }
-  .input-row:last-of-type { border-bottom: none; }
-
-  .input-label {
+  .model-table th:first-child { text-align: left; }
+  .model-table td {
     font-size: 13px;
-    color: var(--text-2);
-    min-width: 260px;
-    flex-shrink: 0;
-  }
-
-  input[type=range] {
-    flex: 1;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 2px;
-    background: var(--border-strong);
-    border-radius: 2px;
-    outline: none;
-    cursor: pointer;
-  }
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    background: var(--text);
-    border: 2px solid var(--surface);
-    box-shadow: 0 0 0 1px var(--border-strong);
-    cursor: pointer;
-    transition: transform .15s;
-  }
-  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
-
-  .input-val {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    font-weight: 500;
-    min-width: 90px;
+    padding: .45rem .75rem;
+    border-bottom: 1px solid var(--border);
     text-align: right;
-    color: var(--text);
+    font-family: 'DM Mono', monospace;
   }
+  .model-table td:first-child { text-align: left; color: var(--text-2); font-family: 'DM Sans', sans-serif; font-size: 13px; }
+  .model-table tr:last-child td { border-bottom: none; }
+  .model-table .best { color: var(--pos); font-weight: 500; }
+  .model-table .neg  { color: var(--neg); }
+  .model-table .muted { color: var(--text-3); }
+  .th-tt  { color: var(--purple) !important; }
+  .th-lr  { color: var(--text-2) !important; }
+  .th-rnd { color: var(--text-3) !important; }
 
-  .hint {
-    font-size: 11px;
-    color: var(--text-3);
-    padding: .15rem 0 .5rem 260px;
-    line-height: 1.4;
-  }
-
-  .hbox {
-    background: var(--bg);
-    border-radius: var(--radius-sm);
-    padding: .75rem 1rem;
-    font-size: 12px;
-    color: var(--text-2);
-    line-height: 1.7;
-    margin-top: 1rem;
-  }
-  .hbox b { font-weight: 500; color: var(--text); }
-
-  .mgrid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .mc {
-    background: var(--bg);
+  /* ── Gift distribution ── */
+  .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .875rem; }
+  .gift-card {
+    border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     padding: 1rem 1.1rem;
   }
+  .gift-head { display: flex; align-items: center; gap: 8px; margin-bottom: .6rem; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .gift-name { font-size: 13px; font-weight: 500; }
+  .bdg { font-size: 10px; padding: 2px 7px; border-radius: 4px; margin-left: auto; font-family: 'DM Mono', monospace; font-weight: 500; }
+  .bar-wrap { height: 3px; background: var(--border); border-radius: 2px; margin: .5rem 0 .35rem; }
+  .bar-fill { height: 3px; border-radius: 2px; }
+  .gift-stat { display: flex; justify-content: space-between; font-size: 12px; padding: .15rem 0; }
+  .gift-stat-l { color: var(--text-2); }
+  .gift-stat-v { font-weight: 500; font-family: 'DM Mono', monospace; font-size: 11px; }
+
+  /* ── Input block ── */
+  .input-block { display: flex; flex-direction: column; gap: .1rem; }
+  .input-row {
+    display: flex; align-items: center; gap: 1rem;
+    padding: .6rem 0; border-bottom: 1px solid var(--border);
+  }
+  .input-row:last-of-type { border-bottom: none; }
+  .input-label { font-size: 13px; color: var(--text-2); min-width: 260px; flex-shrink: 0; }
+  input[type=range] {
+    flex: 1; -webkit-appearance: none; appearance: none;
+    height: 2px; background: var(--border-strong); border-radius: 2px; outline: none; cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--text); border: 2px solid var(--surface);
+    box-shadow: 0 0 0 1px var(--border-strong); cursor: pointer; transition: transform .15s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .input-val { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; min-width: 90px; text-align: right; }
+  .hint { font-size: 11px; color: var(--text-3); padding: .15rem 0 .5rem 260px; line-height: 1.4; }
+  .hbox {
+    background: var(--bg); border-radius: var(--radius-sm);
+    padding: .75rem 1rem; font-size: 12px; color: var(--text-2); line-height: 1.7; margin-top: 1rem;
+  }
+  .hbox b { font-weight: 500; color: var(--text); }
+
+  /* ── Optimizer result ── */
+  .opt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .opt-card { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.1rem 1.25rem; }
+  .opt-big { font-size: 40px; font-weight: 300; letter-spacing: -.02em; margin: .2rem 0 .1rem; font-family: 'DM Mono', monospace; }
+  .opt-sub { font-size: 12px; color: var(--text-2); }
+  .opt-detail { font-size: 11px; color: var(--text-3); margin-top: .75rem; line-height: 1.7; font-family: 'DM Mono', monospace; }
+
+  /* ── KPI metrics ── */
+  .mgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .mc { background: var(--bg); border-radius: var(--radius-sm); padding: 1rem 1.1rem; }
   .ml { font-size: 11px; color: var(--text-3); margin-bottom: .35rem; font-family: 'DM Mono', monospace; }
   .mv { font-size: 22px; font-weight: 500; letter-spacing: -.01em; }
   .ms { font-size: 11px; color: var(--text-3); margin-top: .25rem; line-height: 1.4; }
   .pos { color: var(--pos); }
   .neg { color: var(--neg); }
 
-  .opt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-  .opt-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 1.1rem 1.25rem;
-  }
-
-  .opt-big {
-    font-size: 40px;
-    font-weight: 300;
-    letter-spacing: -.02em;
-    margin: .2rem 0 .1rem;
-    font-family: 'DM Mono', monospace;
-  }
-
-  .opt-sub { font-size: 12px; color: var(--text-2); }
-  .opt-detail { font-size: 11px; color: var(--text-3); margin-top: .75rem; line-height: 1.6; font-family: 'DM Mono', monospace; }
-
-  .seg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-  .seg-c {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 1rem 1.1rem;
-  }
-
-  .seg-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: .75rem;
-  }
-
-  .seg-name { font-size: 13px; font-weight: 500; font-family: 'DM Mono', monospace; }
-
-  .seg-tag {
-    font-size: 10px;
-    font-family: 'DM Mono', monospace;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-weight: 500;
-  }
-
-  .sr {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    padding: .22rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .sr:last-child { border-bottom: none; }
-  .sr-l { color: var(--text-2); }
-  .sr-v { font-weight: 500; font-family: 'DM Mono', monospace; font-size: 11px; }
-
-  .og { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .875rem; }
-
-  .oc {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 1rem 1.1rem;
-  }
-
-  .oh { display: flex; align-items: center; gap: 8px; margin-bottom: .6rem; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .on { font-size: 13px; font-weight: 500; }
-  .bdg { font-size: 10px; padding: 2px 7px; border-radius: 4px; margin-left: auto; font-family: 'DM Mono', monospace; }
-
-  .st { display: flex; justify-content: space-between; font-size: 12px; padding: .18rem 0; }
-  .stl { color: var(--text-2); }
-  .stv { font-weight: 500; font-family: 'DM Mono', monospace; font-size: 11px; }
-
-  .bw { height: 3px; background: var(--border); border-radius: 2px; margin: .5rem 0 .3rem; }
-  .bf { height: 3px; border-radius: 2px; transition: width .4s ease; }
-
+  /* ── ROI comparison ── */
   .rrow { display: flex; align-items: center; gap: 10px; margin: .4rem 0; }
-  .rl { font-size: 12px; color: var(--text-2); min-width: 120px; }
+  .rl { font-size: 12px; color: var(--text-2); min-width: 140px; }
   .rbg { flex: 1; height: 6px; background: var(--border); border-radius: 4px; overflow: hidden; }
   .rb { height: 6px; border-radius: 4px; transition: width .4s ease; }
   .rv { font-size: 13px; font-weight: 500; min-width: 60px; text-align: right; font-family: 'DM Mono', monospace; }
 
+  /* ── Error / insight ── */
+  .err-box { font-size: 13px; color: var(--neg); padding: .5rem 0; line-height: 1.6; grid-column: 1/-1; }
   .insight-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.1rem 1.5rem;
-    font-size: 13px;
-    line-height: 1.75;
-    color: var(--text-2);
-  }
-
-  .err-box {
-    font-size: 13px;
-    color: var(--neg);
-    padding: .5rem 0;
-    line-height: 1.6;
-    grid-column: 1/-1;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.1rem 1.5rem;
+    font-size: 13px; line-height: 1.75; color: var(--text-2);
   }
 
   .footer {
-    text-align: center;
-    font-size: 11px;
-    color: var(--text-3);
-    font-family: 'DM Mono', monospace;
-    padding: 2rem 0 1rem;
-    border-top: 1px solid var(--border);
-    margin-top: 1rem;
+    text-align: center; font-size: 11px; color: var(--text-3);
+    font-family: 'DM Mono', monospace; padding: 2rem 0 1rem;
+    border-top: 1px solid var(--border); margin-top: 1rem;
   }
 
   @media (max-width: 720px) {
-    .mgrid { grid-template-columns: 1fr 1fr; }
-    .opt-grid, .seg-grid { grid-template-columns: 1fr; }
-    .og { grid-template-columns: 1fr; }
+    .mgrid, .gift-grid { grid-template-columns: 1fr 1fr; }
+    .opt-grid { grid-template-columns: 1fr; }
     .input-label { min-width: 160px; font-size: 12px; }
     .hint { padding-left: 0; }
     .input-val { min-width: 70px; font-size: 12px; }
@@ -321,21 +208,49 @@
 
 <header>
   <div class="logo">retention<span>.</span>optimizer</div>
-  <div class="header-meta">Two-Tower Uplift Model · HSE Master Thesis 2026</div>
+  <div class="header-meta">Two-Tower Uplift Model · HSE Diploma Thesis 2026</div>
 </header>
 
 <div class="container">
 
   <div class="page-title">
     <h1>Retention Campaign Optimizer</h1>
-    <p>Enter your campaign parameters — the optimizer finds the targeting thresholds and offer mix that maximise ROI for each user segment, calibrated on Two-Tower uplift model results.</p>
+    <p>Enter campaign parameters — the optimizer finds the targeting threshold that maximises ROI, calibrated on Two-Tower uplift model test-set results.</p>
   </div>
 
+  <!-- Model comparison -->
+  <div class="card">
+    <div class="section-label">Model performance — test set</div>
+    <table class="model-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th class="th-tt">Two-Tower</th>
+          <th class="th-lr">Uplift LR</th>
+          <th class="th-rnd">Random</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Qini AUC</td>   <td class="best">0.0187</td><td>0.0032</td><td class="neg">−0.0035</td></tr>
+        <tr><td>Uplift AUC</td> <td class="best">0.0129</td><td>0.0023</td><td class="muted">—</td></tr>
+        <tr><td>uplift@10%</td> <td class="best">2.41 pp</td><td>1.28 pp</td><td class="muted">—</td></tr>
+        <tr><td>uplift@30%</td> <td class="best">1.52 pp</td><td>0.61 pp</td><td class="muted">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Gift distribution -->
+  <div class="card">
+    <div class="section-label">Optimal gift distribution — test set (284,718 users)</div>
+    <div class="gift-grid" id="gift-cards"></div>
+  </div>
+
+  <!-- Campaign inputs -->
   <div class="card">
     <div class="section-label">Your inputs</div>
     <div class="input-block">
       <div class="input-row">
-        <span class="input-label">Total discount budget (₽)</span>
+        <span class="input-label">Total campaign budget (₽)</span>
         <input type="range" id="budget" min="500000" max="15000000" step="100000" value="4000000">
         <span class="input-val" id="o-b">—</span>
       </div>
@@ -354,26 +269,25 @@
         <span class="input-val" id="o-s">—</span>
       </div>
       <div class="hint" id="season-hint"></div>
-
-
     </div>
-
     <div class="hbox">
       LTV of a retained user: <b id="ltv-disp">—</b>
-      &nbsp;·&nbsp; Offer mix: <b>model-optimised (49.8% minutes · 38.8% unlock · 11.4% discount)</b>
-      &nbsp;·&nbsp; Cost per offer: <b>₽60 active · ₽40 return</b> (fixed)
+      &nbsp;·&nbsp; Offer mix: <b>91.3% unlock · 8.4% discount · 0.3% minutes</b>
+      &nbsp;·&nbsp; Avg. cost per offer: <b>₽45</b>
     </div>
   </div>
 
+  <!-- Optimizer result -->
   <div class="card">
-    <div class="section-label">Optimizer result — optimal targeting thresholds</div>
+    <div class="section-label">Optimizer result — optimal targeting threshold</div>
     <div class="opt-grid" id="opt-result"></div>
     <div style="margin-top:.875rem;font-size:11px;color:var(--text-3);font-family:'DM Mono',monospace;line-height:1.6">
-      Each percentile is added only if marginal uplift revenue (uplift × LTV) exceeds offer cost.
-      Calibrated on model test-set: uplift@10%=4.12pp · uplift@30%=3.30pp · uplift@40%=2.80pp.
+      Each percentile tier is included only if marginal uplift revenue (uplift × LTV) exceeds offer cost (₽45).
+      Calibrated on Two-Tower test-set: Qini AUC=0.0187 · uplift@10%=2.41pp · uplift@30%=1.52pp.
     </div>
   </div>
 
+  <!-- KPI metrics -->
   <div>
     <div class="section-label" style="padding:0 .1rem .75rem">Key performance metrics</div>
     <div class="mgrid">
@@ -384,72 +298,80 @@
     </div>
   </div>
 
+  <!-- ROI comparison -->
   <div class="card">
-    <div class="section-label">Optimal segment allocation</div>
-    <div class="seg-grid" id="seg-cards"></div>
-  </div>
-
-  <div class="card">
-    <div class="section-label">Optimal offer mix</div>
-    <div class="og" id="offer-cards"></div>
-  </div>
-
-  <div class="card">
-    <div class="section-label">ROI — optimised model vs random targeting</div>
+    <div class="section-label">ROI — Two-Tower vs Uplift LR vs random targeting</div>
     <div id="roi-rows"></div>
   </div>
 
   <div class="insight-box" id="insight"></div>
 
   <div class="footer">
-    Built on Two-Tower Neural Network uplift model results &nbsp;·&nbsp;
-    HSE Master Thesis, Business Informatics, 2026 &nbsp;·&nbsp;
-    Test dataset: 1,898,116 users · April–June 2025
+    Two-Tower Neural Network Uplift Model &nbsp;·&nbsp;
+    HSE Diploma Thesis, Business Informatics, 2026 &nbsp;·&nbsp;
+    Test set: 284,718 users (active: 32,068 · return: 252,650)
   </div>
 
 </div>
 
 <script>
-const ACT_N = 32068, RET_N = 252650;
+const TOTAL_N = 284718;
+const CPU     = 45;
 
-const CUM_UPLIFT_ACT = {
-  1:0.070, 5:0.055, 10:0.0412, 15:0.038, 20:0.036,
-  25:0.034, 30:0.033, 35:0.031, 40:0.028,
-  45:0.026, 50:0.024, 55:0.022, 60:0.020
+// Cumulative uplift curve — anchored at uplift@10%=2.41pp, uplift@30%=1.52pp
+const CUM_UPLIFT = {
+   1:0.040,  5:0.031, 10:0.0241, 15:0.021, 20:0.018,
+  25:0.017, 30:0.0152, 35:0.013, 40:0.012,
+  45:0.010, 50:0.009,  55:0.008, 60:0.007
 };
-const CUM_UPLIFT_RET = {
-  1:0.050, 5:0.038, 10:0.032, 15:0.030, 20:0.028,
-  25:0.027, 30:0.026, 35:0.025, 40:0.022,
-  45:0.020, 50:0.018, 55:0.016, 60:0.014
+
+// Uplift LR cumulative curve — anchored at uplift@10%=1.28pp, uplift@30%=0.61pp
+const CUM_UPLIFT_LR = {
+   1:0.020,  5:0.015, 10:0.0128, 15:0.010, 20:0.008,
+  25:0.007, 30:0.0061, 35:0.005, 40:0.005,
+  45:0.004, 50:0.004,  55:0.003, 60:0.003
 };
+
+const GIFTS = [
+  { name:'Unlock offer',   sub:'free-unlock-week',     color:'#1D9E75', bg:'#E1F5EE', tc:'#085041', share:.913, users:259859, qini:0.0045, top:true  },
+  { name:'Discount offer', sub:'discount-15-one-week', color:'#D85A30', bg:'#FAECE7', tc:'#712B13', share:.084, users:23956,  qini:0.0056, top:false },
+  { name:'Minutes offer',  sub:'10-min-one-week',      color:'#534AB7', bg:'#EEEDFE', tc:'#3C3489', share:.003, users:903,    qini:0.0051, top:false },
+];
+
+const SEASON_HINTS = [
+  '',
+  'End of season — 1 month left. Only top-scoring users can be profitably targeted.',
+  'Late season — 2 months. Short payback window limits targeting scope.',
+  'Mid-late season — 3 months. Profitable tiers expand as LTV grows.',
+  'Mid season — 4 months. Good balance between reach and payback.',
+  'Mid-early season — 5 months. Wider targeting justified by higher LTV.',
+  'Early-mid season — 6 months. High LTV makes broad campaigns profitable.',
+  'Early season — 7 months. Maximum payback window — scale up aggressively.',
+];
 
 function interp(obj, t) {
-  const keys = Object.keys(obj).map(Number).sort((a,b)=>a-b);
+  const keys = Object.keys(obj).map(Number).sort((a,b) => a-b);
   if (t <= keys[0]) return obj[keys[0]];
   if (t >= keys[keys.length-1]) return obj[keys[keys.length-1]];
-  const lo = keys.filter(k=>k<=t).pop();
-  const hi = keys.filter(k=>k>=t)[0];
-  if (lo===hi) return obj[lo];
-  return obj[lo] + (obj[hi]-obj[lo])*(t-lo)/(hi-lo);
+  const lo = keys.filter(k => k <= t).pop();
+  const hi = keys.filter(k => k >= t)[0];
+  if (lo === hi) return obj[lo];
+  return obj[lo] + (obj[hi] - obj[lo]) * (t - lo) / (hi - lo);
 }
 
-function cumUplift(t, isAct) { return interp(isAct ? CUM_UPLIFT_ACT : CUM_UPLIFT_RET, t); }
-
-function marginalUplift(t, isAct) {
-  if (t <= 1) return cumUplift(1, isAct);
-  return Math.max(0.0005, cumUplift(t,isAct)*t - cumUplift(t-1,isAct)*(t-1));
+function marginalUplift(t, curve) {
+  if (t <= 1) return interp(curve, 1);
+  return Math.max(0.0005, interp(curve, t)*t - interp(curve, t-1)*(t-1));
 }
 
-function findOptimal(ltv, budget, segN, cpu, isAct) {
+function findOptimal(ltv, budget, curve) {
   let cumCost=0, cumRetained=0, cumRevenue=0, optTgt=0;
   for (let t=1; t<=60; t++) {
-    const nAtT  = Math.round(segN*t/100);
-    const nPrev = Math.round(segN*(t-1)/100);
-    const nNew  = nAtT - nPrev;
+    const nNew = Math.round(TOTAL_N*t/100) - Math.round(TOTAL_N*(t-1)/100);
     if (nNew <= 0) continue;
-    const mUpl  = marginalUplift(t, isAct);
+    const mUpl  = marginalUplift(t, curve);
     const mRev  = nNew * mUpl * ltv;
-    const mCost = nNew * cpu;
+    const mCost = nNew * CPU;
     if (mRev < mCost) break;
     if (cumCost + mCost > budget) break;
     cumCost     += mCost;
@@ -457,180 +379,127 @@ function findOptimal(ltv, budget, segN, cpu, isAct) {
     cumRevenue  += mRev;
     optTgt       = t;
   }
-  const users = Math.round(segN * optTgt / 100);
-  const roi   = cumCost > 0 ? (cumRevenue - cumCost) / cumCost * 100 : 0;
-  const cUpl  = optTgt > 0 ? cumUplift(optTgt, isAct) : 0;
-  const mStop = optTgt > 0 ? marginalUplift(optTgt, isAct) : marginalUplift(1, isAct);
   return {
-    tgt: optTgt, users,
-    cost: Math.round(cumCost),
+    tgt: optTgt,
+    users:    Math.round(TOTAL_N * optTgt / 100),
+    cost:     Math.round(cumCost),
     retained: Math.round(cumRetained),
-    revenue: Math.round(cumRevenue),
-    roi, cumUplift: cUpl,
-    breakeven: Math.round(cpu / mStop)
+    revenue:  Math.round(cumRevenue),
+    roi:      cumCost > 0 ? (cumRevenue - cumCost) / cumCost * 100 : 0,
+    cumUplift: optTgt > 0 ? interp(curve, optTgt) : 0,
+    breakeven: Math.round(CPU / marginalUplift(optTgt > 0 ? optTgt : 1, curve)),
   };
 }
-
-const SEASON_HINTS = [
-  '',
-  'End of season — 1 month left. Only the very top users can be profitably targeted.',
-  'Late season — 2 months. Short payback window limits targeting scope significantly.',
-  'Mid-late season — 3 months. return_users start becoming viable at lower offer costs.',
-  'Mid season — 4 months. Good balance across both segments.',
-  'Mid-early season — 5 months. Wider targeting justified by higher LTV.',
-  'Early-mid season — 6 months. High LTV makes broad campaigns profitable.',
-  'Early season — 7 months. Maximum payback window — scale up aggressively.',
-];
-
-const OFFERS = [
-  {name:'Minutes offer', sub:'10-min-one-week',   color:'#534AB7', bg:'#EEEDFE', tc:'#3C3489', share:.498, uplift:.0043, cShare:.30},
-  {name:'Unlock offer',  sub:'free-unlock-week',  color:'#1D9E75', bg:'#E1F5EE', tc:'#085041', share:.388, uplift:.0049, cShare:.25},
-  {name:'Discount offer',sub:'discount-15-one-week',color:'#D85A30',bg:'#FAECE7',tc:'#712B13', share:.114, uplift:.0033, cShare:.45},
-];
 
 function fmt(n) { return Math.round(n).toLocaleString('ru-RU'); }
 function clamp(v,a,b) { return Math.max(a, Math.min(b, v)); }
 
-function update() {
-  const budget  = +document.getElementById('budget').value;
-  const arpu    = +document.getElementById('arpu').value;
-  const season  = +document.getElementById('season').value;
-  const cpuAct  = 60;
-  const cpuRet  = 40;
-  const ltv     = arpu * season;
+// Render gift cards (static)
+document.getElementById('gift-cards').innerHTML = GIFTS.map(g => `
+  <div class="gift-card">
+    <div class="gift-head">
+      <div class="dot" style="background:${g.color}"></div>
+      <span class="gift-name">${g.name}</span>
+      ${g.top ? `<span class="bdg" style="background:${g.bg};color:${g.tc}">top share</span>` : ''}
+    </div>
+    <div class="bar-wrap"><div class="bar-fill" style="background:${g.color};width:${(g.share*100).toFixed(1)}%"></div></div>
+    <div class="gift-stat"><span class="gift-stat-l">Share</span><span class="gift-stat-v">${(g.share*100).toFixed(1)}%</span></div>
+    <div class="gift-stat"><span class="gift-stat-l">Users</span><span class="gift-stat-v">${fmt(g.users)}</span></div>
+    <div class="gift-stat"><span class="gift-stat-l">Qini AUC</span><span class="gift-stat-v">${g.qini.toFixed(4)}</span></div>
+  </div>
+`).join('');
 
-  document.getElementById('o-b').textContent  = fmt(budget) + ' ₽';
-  document.getElementById('o-a').textContent  = fmt(arpu) + ' ₽';
-  document.getElementById('o-s').textContent  = season + ' мес.';
+function update() {
+  const budget = +document.getElementById('budget').value;
+  const arpu   = +document.getElementById('arpu').value;
+  const season = +document.getElementById('season').value;
+  const ltv    = arpu * season;
+
+  document.getElementById('o-b').textContent = fmt(budget) + ' ₽';
+  document.getElementById('o-a').textContent = fmt(arpu)   + ' ₽';
+  document.getElementById('o-s').textContent = season + ' мес.';
   document.getElementById('season-hint').textContent = SEASON_HINTS[season] || '';
   document.getElementById('ltv-disp').textContent = '₽' + fmt(ltv) + ' (' + arpu + ' ₽ × ' + season + ' мес.)';
 
-  const wAct = ACT_N * cpuAct, wRet = RET_N * cpuRet;
-  const bAct = Math.round(budget * wAct / (wAct + wRet));
-  const bRet = budget - bAct;
+  const tt  = findOptimal(ltv, budget, CUM_UPLIFT);
+  const lr  = findOptimal(ltv, budget, CUM_UPLIFT_LR);
+  const roiRandom = tt.cost > 0 ? (tt.users * 0.0082 * ltv - tt.cost) / tt.cost * 100 : 0;
 
-  const act = findOptimal(ltv, bAct, ACT_N, cpuAct, true);
-  const ret = findOptimal(ltv, bRet, RET_N, cpuRet, false);
-
-  const totalUsers    = act.users + ret.users;
-  const totalCost     = act.cost  + ret.cost;
-  const totalRetained = act.retained + ret.retained;
-  const totalRevenue  = act.revenue  + ret.revenue;
-  const totalROI      = totalCost > 0 ? (totalRevenue - totalCost) / totalCost * 100 : 0;
-  const cpru          = totalRetained > 0 ? totalCost / totalRetained : 0;
-  const roiRandom     = totalCost > 0 ? (totalUsers * 0.0082 * ltv - totalCost) / totalCost * 100 : 0;
-
-  if (act.tgt === 0 && ret.tgt === 0) {
-    const minBE = Math.min(cpuAct / marginalUplift(1,true), cpuRet / marginalUplift(1,false));
+  if (tt.tgt === 0) {
+    const minBE = CPU / marginalUplift(1, CUM_UPLIFT);
     document.getElementById('opt-result').innerHTML =
-      '<div class="err-box">No targeting tier is profitable at LTV ₽' + fmt(ltv) + '. '
-      + 'Minimum profitable LTV: ₽' + fmt(Math.round(minBE))
-      + ' — increase ARPU, extend the season window, or reduce offer cost.</div>';
+      '<div class="err-box">No targeting tier is profitable at LTV ₽' + fmt(ltv) +
+      '. Minimum profitable LTV: ₽' + fmt(Math.round(minBE)) +
+      ' — increase ARPU, extend the season window, or reduce offer cost.</div>';
     ['m-u','m-r','m-c','m-roi'].forEach(id => document.getElementById(id).textContent = '—');
-    ['m-u-s','m-r-s','m-c-s','m-roi-s','seg-cards','offer-cards','roi-rows','insight']
-      .forEach(id => document.getElementById(id).textContent = '');
+    ['m-u-s','m-r-s','m-c-s','m-roi-s','roi-rows','insight'].forEach(id => document.getElementById(id).textContent = '');
     return;
   }
 
   document.getElementById('opt-result').innerHTML = `
     <div class="opt-card">
-      <div style="font-size:12px;font-weight:500;color:var(--text-2);margin-bottom:.3rem;font-family:'DM Mono',monospace">active_users</div>
-      <div class="opt-big" style="color:var(--purple)">${act.tgt}%</div>
-      <div class="opt-sub">${fmt(act.users)} users &nbsp;·&nbsp; ₽${fmt(act.cost)} spend</div>
+      <div style="font-size:12px;font-weight:500;color:var(--text-2);margin-bottom:.3rem;font-family:'DM Mono',monospace">targeting threshold</div>
+      <div class="opt-big" style="color:var(--purple)">top ${tt.tgt}%</div>
+      <div class="opt-sub">${fmt(tt.users)} users &nbsp;·&nbsp; ₽${fmt(tt.cost)} spend</div>
       <div class="opt-detail">
-        Cumulative uplift: +${(act.cumUplift*100).toFixed(2)}pp<br>
-        Breakeven LTV: ₽${fmt(act.breakeven)}
+        Cumulative uplift at threshold: +${(tt.cumUplift*100).toFixed(2)}pp<br>
+        Breakeven LTV: ₽${fmt(tt.breakeven)}<br>
+        Est. incremental retentions: +${fmt(tt.retained)}
       </div>
     </div>
     <div class="opt-card">
-      <div style="font-size:12px;font-weight:500;color:var(--text-2);margin-bottom:.3rem;font-family:'DM Mono',monospace">return_users</div>
-      <div class="opt-big" style="color:var(--green)">${ret.tgt}%</div>
-      <div class="opt-sub">${fmt(ret.users)} users &nbsp;·&nbsp; ₽${fmt(ret.cost)} spend</div>
-      <div class="opt-detail">
-        Cumulative uplift: +${(ret.cumUplift*100).toFixed(2)}pp<br>
-        Breakeven LTV: ₽${fmt(ret.breakeven)}
+      <div style="font-size:12px;font-weight:500;color:var(--text-2);margin-bottom:.3rem;font-family:'DM Mono',monospace">gift allocation at threshold</div>
+      <div style="margin-top:.5rem">
+        ${GIFTS.map(g => `
+          <div style="display:flex;align-items:center;gap:8px;margin:.35rem 0">
+            <div class="dot" style="background:${g.color}"></div>
+            <span style="font-size:12px;color:var(--text-2);flex:1">${g.name}</span>
+            <span style="font-size:12px;font-family:'DM Mono',monospace;font-weight:500">${fmt(Math.round(tt.users*g.share))}</span>
+          </div>
+        `).join('')}
       </div>
     </div>
   `;
 
-  document.getElementById('m-u').textContent   = fmt(totalUsers);
-  document.getElementById('m-u-s').textContent = 'active: ' + act.tgt + '% · return: ' + ret.tgt + '%';
-  document.getElementById('m-r').textContent   = fmt(totalRetained);
-  document.getElementById('m-r-s').textContent = 'active +' + fmt(act.retained) + ' · return +' + fmt(ret.retained);
-  document.getElementById('m-c').textContent   = '₽' + fmt(cpru);
-  document.getElementById('m-c-s').textContent = 'LTV ₽' + fmt(ltv) + ' · ' + (cpru < ltv ? 'payback positive' : 'payback negative');
+  document.getElementById('m-u').textContent   = fmt(tt.users);
+  document.getElementById('m-u-s').textContent = 'top ' + tt.tgt + '% by uplift score';
+  document.getElementById('m-r').textContent   = fmt(tt.retained);
+  document.getElementById('m-r-s').textContent = 'cumulative uplift +' + (tt.cumUplift*100).toFixed(2) + 'pp';
+  document.getElementById('m-c').textContent   = '₽' + fmt(tt.cost / tt.retained);
+  document.getElementById('m-c-s').textContent = 'LTV ₽' + fmt(ltv) + ' · ' + (tt.cost/tt.retained < ltv ? 'payback positive' : 'payback negative');
 
   const roiEl = document.getElementById('m-roi');
-  roiEl.textContent = (totalROI >= 0 ? '+' : '') + totalROI.toFixed(1) + '%';
-  roiEl.className = 'mv ' + (totalROI >= 0 ? 'pos' : 'neg');
-  document.getElementById('m-roi-s').textContent = 'Revenue ₽' + fmt(totalRevenue) + ' · Spend ₽' + fmt(totalCost);
+  roiEl.textContent = (tt.roi >= 0 ? '+' : '') + tt.roi.toFixed(1) + '%';
+  roiEl.className = 'mv ' + (tt.roi >= 0 ? 'pos' : 'neg');
+  document.getElementById('m-roi-s').textContent = 'Revenue ₽' + fmt(tt.revenue) + ' · Spend ₽' + fmt(tt.cost);
 
-  document.getElementById('seg-cards').innerHTML = [
-    {label:'active_users',color:'var(--purple)',bg:'var(--purple-light)',tc:'var(--purple-text)',d:act,segN:ACT_N,base:'68.4%',qini:'0.0087',cpu:cpuAct},
-    {label:'return_users',color:'var(--green)', bg:'var(--green-light)', tc:'var(--green-text)', d:ret,segN:RET_N,base:'11.4%',qini:'0.0236',cpu:cpuRet},
-  ].map(s => `
-    <div class="seg-c">
-      <div class="seg-head">
-        <span class="seg-name">${s.label}</span>
-        <span class="seg-tag" style="background:${s.bg};color:${s.tc}">target ${s.d.tgt}%</span>
-      </div>
-      <div class="sr"><span class="sr-l">Segment size</span><span class="sr-v">${fmt(s.segN)}</span></div>
-      <div class="sr"><span class="sr-l">Users targeted</span><span class="sr-v">${fmt(s.d.users)}</span></div>
-      <div class="sr"><span class="sr-l">Baseline retention</span><span class="sr-v">${s.base}</span></div>
-      <div class="sr"><span class="sr-l">Qini AUC</span><span class="sr-v">${s.qini}</span></div>
-      <div class="sr"><span class="sr-l">Cumulative uplift at threshold</span><span class="sr-v pos">+${(s.d.cumUplift*100).toFixed(2)}pp</span></div>
-      <div class="sr"><span class="sr-l">Breakeven LTV</span><span class="sr-v">₽${fmt(s.d.breakeven)}</span></div>
-      <div class="sr"><span class="sr-l">Est. incremental retained</span><span class="sr-v pos">+${fmt(s.d.retained)}</span></div>
-      <div class="sr"><span class="sr-l">Budget allocated</span><span class="sr-v">₽${fmt(s.d.cost)}</span></div>
+  const maxR = Math.max(Math.abs(tt.roi), Math.abs(lr.roi), Math.abs(roiRandom), 1);
+  document.getElementById('roi-rows').innerHTML = [
+    { label:'Two-Tower (model)', roi: tt.roi,       color:'var(--purple)' },
+    { label:'Uplift LR',         roi: lr.roi,        color:'var(--orange)' },
+    { label:'Random targeting',  roi: roiRandom,     color:'#9a9a94'       },
+  ].map(r => `
+    <div class="rrow">
+      <span class="rl">${r.label}</span>
+      <div class="rbg"><div class="rb" style="width:${clamp(Math.abs(r.roi)/maxR*100,0,100).toFixed(1)}%;background:${r.color}"></div></div>
+      <span class="rv ${r.roi>=0?'pos':'neg'}">${(r.roi>=0?'+':'')+r.roi.toFixed(1)}%</span>
     </div>
   `).join('');
 
-  document.getElementById('offer-cards').innerHTML = OFFERS.map(o => {
-    const n    = Math.round(totalUsers * o.share);
-    const budO = Math.round(totalCost * o.cShare);
-    const retO = Math.round(n * o.uplift);
-    const isTop = o.uplift === Math.max(...OFFERS.map(x => x.uplift));
-    return `<div class="oc">
-      <div class="oh">
-        <div class="dot" style="background:${o.color}"></div>
-        <span class="on">${o.name}</span>
-        ${isTop ? `<span class="bdg" style="background:${o.bg};color:${o.tc}">top uplift</span>` : ''}
-      </div>
-      <div class="bw"><div class="bf" style="background:${o.color};width:${Math.round(o.share*100)}%"></div></div>
-      <div class="st"><span class="stl">Share</span><span class="stv">${Math.round(o.share*100)}%</span></div>
-      <div class="st"><span class="stl">Users</span><span class="stv">${fmt(n)}</span></div>
-      <div class="st"><span class="stl">Budget</span><span class="stv">₽${fmt(budO)}</span></div>
-      <div class="st"><span class="stl">Est. incremental retained</span><span class="stv pos">+${fmt(retO)}</span></div>
-      <div class="st"><span class="stl">Uplift score</span><span class="stv">+${(o.uplift*100).toFixed(2)}%</span></div>
-    </div>`;
-  }).join('');
-
-  const maxR = Math.max(Math.abs(totalROI), Math.abs(roiRandom), 1);
-  document.getElementById('roi-rows').innerHTML = [
-    {label:'Optimised model', roi:totalROI,  color:'var(--purple)'},
-    {label:'Random targeting',roi:roiRandom, color:'#9a9a94'},
-  ].map(r => `<div class="rrow">
-    <span class="rl">${r.label}</span>
-    <div class="rbg"><div class="rb" style="width:${clamp(Math.abs(r.roi)/maxR*100,0,100).toFixed(1)}%;background:${r.color}"></div></div>
-    <span class="rv ${r.roi>=0?'pos':'neg'}">${(r.roi>=0?'+':'')+r.roi.toFixed(1)}%</span>
-  </div>`).join('');
-
   const why = season <= 2
-    ? 'With only ' + season + ' month' + (season>1?'s':'') + ' remaining, LTV (₽' + fmt(ltv) + ') is low. The optimizer narrows targeting to active ' + act.tgt + '% / return ' + ret.tgt + '% — only users where marginal uplift revenue exceeds the offer cost.'
+    ? 'With only ' + season + ' month' + (season>1?'s':'') + ' remaining, LTV (₽' + fmt(ltv) + ') is low — the optimizer targets only the top ' + tt.tgt + '% of users where marginal uplift revenue exceeds the ₽45 offer cost.'
     : season >= 6
-    ? 'With ' + season + ' months remaining, high LTV (₽' + fmt(ltv) + ') makes broad targeting profitable: active ' + act.tgt + '% / return ' + ret.tgt + '%. The large return_users volume (' + fmt(RET_N) + ') drives total incremental retentions.'
-    : 'At ' + season + ' months remaining (LTV ₽' + fmt(ltv) + '), the optimizer sets active ' + act.tgt + '% / return ' + ret.tgt + '%. Thresholds expand as the season starts earlier or ARPU grows.';
+    ? 'With ' + season + ' months remaining, LTV (₽' + fmt(ltv) + ') is high — broad targeting of top ' + tt.tgt + '% is profitable. Unlock offers dominate (91.3%) as the highest-share gift type.'
+    : 'At ' + season + ' months remaining (LTV ₽' + fmt(ltv) + '), the optimizer targets the top ' + tt.tgt + '% of users. Threshold widens as ARPU grows or the season starts earlier.';
 
-  const prof = totalROI >= 0
-    ? ' ROI +' + totalROI.toFixed(1) + '% — every ₽1 spent returns ₽' + (totalRevenue/totalCost).toFixed(2) + '.'
-    : ' Campaign ROI is negative at current parameters — consider reducing offer costs or launching earlier in the season.';
+  const prof = tt.roi >= 0
+    ? ' Campaign ROI +' + tt.roi.toFixed(1) + '% — every ₽1 spent returns ₽' + (tt.revenue/tt.cost).toFixed(2) + '.'
+    : ' Campaign ROI is negative at current parameters — consider reducing offer costs or targeting a smaller share.';
 
   document.getElementById('insight').textContent = why + prof;
 }
 
-['budget','arpu','season'].forEach(id => {
-  document.getElementById(id).addEventListener('input', update);
-});
+['budget','arpu','season'].forEach(id => document.getElementById(id).addEventListener('input', update));
 update();
 </script>
 </body>
