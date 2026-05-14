@@ -31,7 +31,7 @@ Place both files in the same directory as the notebook before running:
 4. **Two-Tower Architecture** — two independent MLP towers (user tower + treatment tower) concatenated before a shared head
 5. **Metric Functions** — Qini AUC, Uplift AUC, Qini curve
 6. **Visualisation Functions** — plotting utilities
-7. **Model Training** — training with IPTW-weighted BCE loss and early stopping; loads pre-trained weights if the `.pth` file is present
+7. **Model Training** — training with IPTW-weighted BCE loss and early stopping
 8. **Baseline** — T-Learner with logistic regression
 9. **Evaluation Metrics** — model comparison on the test set
 10. **Qini Curves** — overall plot and per-segment breakdown (active_users / return_users)
